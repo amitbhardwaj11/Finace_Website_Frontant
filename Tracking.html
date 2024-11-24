@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Income and Expense Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 20px;
+        }
+
+        h1, h2 {
+            color: #007bff;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 20px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .btn {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background-color: #218838;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background: #e9f7ef;
+            border: 1px solid #28a745;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Income and Expense Tracker</h1>
+    <p>Enter your monthly income and expenses below to calculate your remaining balance.</p>
+
+    <form id="expenseForm">
+        <!-- Income Input -->
+        <label for="income">Monthly Income (₹):</label>
+        <input type="number" id="income" placeholder="Enter your income" required>
+
+        <!-- Expense Inputs -->
+        <label for="rent">Rent (₹):</label>
+        <input type="number" id="rent" placeholder="Enter your rent" required>
+
+        <label for="groceries">Groceries (₹):</label>
+        <input type="number" id="groceries" placeholder="Enter your groceries expense" required>
+
+        <label for="bills">Bills (₹):</label>
+        <input type="number" id="bills" placeholder="Enter your bills expense" required>
+
+        <label for="entertainment">Entertainment (₹):</label>
+        <input type="number" id="entertainment" placeholder="Enter your entertainment expense" required>
+
+        <!-- Submit Button -->
+        <button type="button" class="btn" onclick="calculateBalance()">Calculate</button>
+    </form>
+
+    <!-- Result Display -->
+    <div class="result" id="result" style="display: none;">
+        <h2>Calculation Result:</h2>
+        <p id="totalExpenses"></p>
+        <p id="remainingBalance"></p>
+    </div>
+</div>
+
+<script>
+    // Function to calculate total expenses and remaining balance
+    function calculateBalance() {
+        // Get input values
+        const income = parseFloat(document.getElementById('income').value);
+        const rent = parseFloat(document.getElementById('rent').value);
+        const groceries = parseFloat(document.getElementById('groceries').value);
+        const bills = parseFloat(document.getElementById('bills').value);
+        const entertainment = parseFloat(document.getElementById('entertainment').value);
+
+        // Validate input
+        if (isNaN(income) || isNaN(rent) || isNaN(groceries) || isNaN(bills) || isNaN(entertainment)) {
+            alert("Please enter valid numbers for all fields.");
+            return;
+        }
+
+        // Calculate total expenses and remaining balance
+        const totalExpenses = rent + groceries + bills + entertainment;
+        const remainingBalance = income - totalExpenses;
+
+        // Display the results
+        document.getElementById('totalExpenses').innerText = `Total Expenses: ₹${totalExpenses.toFixed(2)}`;
+        document.getElementById('remainingBalance').innerText = `Remaining Balance: ₹${remainingBalance.toFixed(2)}`;
+
+        // Show the result section
+        document.getElementById('result').style.display = 'block';
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Trading Platform</title>
+    <link rel="stylesheet" href="Trading.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Crypto Trading Platform</h1>
+            <p>Trade cryptocurrencies with ease</p>
+        </header>
+
+        <section id="price-section">
+            <h2>Live Prices</h2>
+            <div id="price-list">
+                <!-- Prices will be loaded dynamically -->
+            </div>
+        </section>
+
+        <section id="trade-section">
+            <h2>Trade Now</h2>
+            <div class="trade-form">
+                <input type="text" id="crypto-name" placeholder="Cryptocurrency (e.g., BTC)">
+                <input type="number" id="crypto-amount" placeholder="Amount">
+                <button id="buy-btn">Buy</button>
+                <button id="sell-btn">Sell</button>
+            </div>
+            <div id="transaction-status"></div>
+        </section>
+
+        <section id="history-section">
+            <h2>Transaction History</h2>
+            <ul id="transaction-history">
+                <!-- Transaction history will be loaded dynamically -->
+            </ul>
+        </section>
+    </div>
+
+    <script src="Trading.js"></script>
+</body>
+</html>

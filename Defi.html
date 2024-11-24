@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeFi Solutions</title>
+    <link rel="stylesheet" href="Defi.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>DeFi Solutions</h1>
+            <p>Access decentralized finance tools with ease</p>
+        </header>
+
+        <section id="wallet-section">
+            <h2>Wallet Integration</h2>
+            <button id="connect-wallet">Connect Wallet</button>
+            <div id="wallet-info" class="hidden">
+                <p><strong>Wallet Address:</strong> <span id="wallet-address"></span></p>
+                <p><strong>Balance:</strong> <span id="wallet-balance"></span></p>
+            </div>
+        </section>
+
+        <section id="dex-section">
+            <h2>Swap Tokens</h2>
+            <div class="swap-form">
+                <input type="text" id="from-token" placeholder="From Token (e.g., ETH)">
+                <input type="text" id="to-token" placeholder="To Token (e.g., USDT)">
+                <input type="number" id="amount" placeholder="Amount">
+                <button id="swap-btn">Swap</button>
+            </div>
+            <div id="swap-status"></div>
+        </section>
+
+        <section id="staking-section">
+            <h2>Staking</h2>
+            <div class="staking-form">
+                <input type="text" id="stake-token" placeholder="Token (e.g., DAI)">
+                <input type="number" id="stake-amount" placeholder="Amount">
+                <button id="stake-btn">Stake</button>
+                <button id="unstake-btn">Unstake</button>
+            </div>
+            <div id="staking-status"></div>
+        </section>
+    </div>
+
+    <script src="Defi.js"></script>
+</body>
+</html>

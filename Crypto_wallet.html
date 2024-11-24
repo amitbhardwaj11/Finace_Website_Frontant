@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Wallet</title>
+    <link rel="stylesheet" href="Crypto_wallet.css">
+    <script src="Crypto_wallet.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Crypto Wallet</h1>
+        <div class="wallet-actions">
+            <button id="generate-keys">Generate Wallet</button>
+            <button id="save-private-key">Save Private Key</button>
+            <button id="load-private-key">Load Private Key</button>
+        </div>
+
+        <div id="transaction-section" class="hidden">
+            <textarea id="transaction-data" placeholder="Enter transaction details..."></textarea>
+            <button id="sign-transaction">Sign Transaction</button>
+            <button id="verify-transaction">Verify Transaction</button>
+        </div>
+
+        <div class="output">
+            <h2>Output:</h2>
+            <pre id="output"></pre>
+        </div>
+    </div>
+
+  
+</body>
+</html>

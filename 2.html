@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>50/30/20 Budget Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 20px;
+        }
+
+        h1, h2 {
+            color: #007bff;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 20px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .btn {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background: #e9f7ef;
+            border: 1px solid #28a745;
+            border-radius: 5px;
+        }
+
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>50/30/20 Budget Calculator</h1>
+    <p>Enter your monthly income and actual expenses below to calculate if you’re meeting the 50/30/20 rule.</p>
+
+    <form id="budgetForm">
+        <!-- Monthly Income -->
+        <label for="income">Monthly Income (₹):</label>
+        <input type="number" id="income" placeholder="Enter your total income" required>
+
+        <!-- Actual Expense Inputs -->
+        <label for="actualEssential">Actual Essential Expenses (₹):</label>
+        <input type="number" id="actualEssential" placeholder="Enter your rent, groceries, etc." required>
+
+        <label for="actualDiscretionary">Actual Discretionary Expenses (₹):</label>
+        <input type="number" id="actualDiscretionary" placeholder="Enter your entertainment, shopping, etc." required>
+
+        <label for="actualSavings">Actual Savings & Investments (₹):</label>
+        <input type="number" id="actualSavings" placeholder="Enter your savings/investments" required>
+
+        <!-- Submit Button -->
+        <button type="button" class="btn" onclick="calculateBudget()">Calculate</button>
+    </form>
+
+    <!-- Result Display -->
+    <div class="result" id="result" style="display: none;">
+        <h2>Budget Analysis:</h2>
+        <p id="recommended"></p>
+        <p id="comparison"></p>
+        <p id="suggestion" class="error"></p>
+    </div>
+</div>
+
+<script>
+    function calculateBudget() {
+        // Input values
+        const income = parseFloat(document.getElementById('income').value);
+        const actualEssential = parseFloat(document.getElementById('actualEssential').value);
+        const actualDiscretionary = parseFloat(document.getElementById('actualDiscretionary').value);
+        const actualSavings = parseFloat(document.getElementById('actualSavings').value);
+
+        // Validation
+        if (isNaN(income) || isNaN(actualEssential) || isNaN(actualDiscretionary) || isNaN(actualSavings)) {
+            alert("Please enter valid numbers in all fields.");
+            return;
+        }
+
+        // Calculate recommended amounts based on 50/30/20 rule
+        const essentialBudget = income * 0.50;
+        const discretionaryBudget = income * 0.30;
+        const savingsBudget = income * 0.20;
+
+        // Total actual expenses
+        const totalActualExpenses = actualEssential + actualDiscretionary + actualSavings;
+
+        // Results
+        let comparison = `
+            Recommended Budget:
+            - Essential: ₹${essentialBudget.toFixed(2)} 
+            - Discretionary: ₹${discretionaryBudget.toFixed(2)} 
+            - Savings: ₹${savingsBudget.toFixed(2)}<br>
+        `;
+
+        comparison += `
+            Your Actual Budget:
+            - Essential: ₹${actualEssential.toFixed(2)} 
+            - Discretionary: ₹${actualDiscretionary.toFixed(2)} 
+            - Savings: ₹${actualSavings.toFixed(2)}
+        `;
+
+        // Suggestions based on comparison
+        let suggestion = '';
+        if (actualEssential > essentialBudget) {
+            suggestion += "Your essential expenses exceed the recommended limit. Consider cutting back on non-essential spending.<br>";
+        }
+        if (actualDiscretionary > discretionaryBudget) {
+            suggestion += "Your discretionary spending is higher than suggested. Try prioritizing savings over entertainment.<br>";
+        }
+        if (actualSavings < savingsBudget) {
+            suggestion += "You are saving less than recommended. Increase your savings to meet long-term goals.<br>";
+        }
+
+        if (!suggestion) {
+            suggestion = "Great job! You are following the 50/30/20 rule effectively.";
+        }
+
+        // Display results
+        document.getElementById('recommended').innerHTML = comparison;
+        document.getElementById('suggestion').innerHTML = suggestion;
+        document.getElementById('result').style.display = 'block';
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment Growth Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            color: #198754;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 20px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .btn {
+            background-color: #198754;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background-color: #145c32;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #e9ecef;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Investment Growth Calculator</h1>
+    <p>Calculate the future value of your investment and see how it grows over time.</p>
+
+    <form id="investmentForm">
+        <!-- Initial Investment -->
+        <label for="initialInvestment">Initial Investment (₹):</label>
+        <input type="number" id="initialInvestment" placeholder="Enter initial investment amount" required>
+
+        <!-- Monthly Contribution -->
+        <label for="monthlyContribution">Monthly Contribution (₹):</label>
+        <input type="number" id="monthlyContribution" placeholder="Enter monthly investment amount" required>
+
+        <!-- Annual Interest Rate -->
+        <label for="annualInterestRate">Annual Interest Rate (%):</label>
+        <input type="number" id="annualInterestRate" placeholder="Enter annual interest rate (e.g., 8 for 8%)" required>
+
+        <!-- Investment Duration -->
+        <label for="investmentDuration">Investment Duration (Years):</label>
+        <input type="number" id="investmentDuration" placeholder="Enter duration in years" required>
+
+        <!-- Calculate Button -->
+        <button type="button" class="btn" onclick="calculateInvestment()">Calculate</button>
+    </form>
+
+    <!-- Results Display -->
+    <div class="result" id="result" style="display: none;">
+        <h2>Investment Summary:</h2>
+        <p id="futureValueOutput"></p>
+        <p id="totalInvestedOutput"></p>
+        <p id="totalInterestOutput"></p>
+    </div>
+</div>
+
+<script>
+    function calculateInvestment() {
+        // Input Values
+        const initialInvestment = parseFloat(document.getElementById('initialInvestment').value);
+        const monthlyContribution = parseFloat(document.getElementById('monthlyContribution').value);
+        const annualInterestRate = parseFloat(document.getElementById('annualInterestRate').value) / 100;
+        const investmentDuration = parseInt(document.getElementById('investmentDuration').value);
+
+        // Validation
+        if (isNaN(initialInvestment) || isNaN(monthlyContribution) || isNaN(annualInterestRate) || isNaN(investmentDuration)) {
+            alert("Please enter valid numbers in all fields.");
+            return;
+        }
+
+        // Calculations
+        const monthlyRate = annualInterestRate / 12; // Monthly interest rate
+        const totalMonths = investmentDuration * 12; // Total months
+        let futureValue = initialInvestment; // Start with the initial investment
+
+        for (let i = 0; i < totalMonths; i++) {
+            futureValue += monthlyContribution; // Add monthly contribution
+            futureValue *= (1 + monthlyRate); // Apply interest
+        }
+
+        const totalInvested = initialInvestment + (monthlyContribution * totalMonths);
+        const totalInterestEarned = futureValue - totalInvested;
+
+        // Results
+        document.getElementById('futureValueOutput').innerHTML = `Future Value of Investment: <strong>₹${futureValue.toFixed(2)}</strong>`;
+        document.getElementById('totalInvestedOutput').innerHTML = `Total Amount Invested: <strong>₹${totalInvested.toFixed(2)}</strong>`;
+        document.getElementById('totalInterestOutput').innerHTML = `Total Interest Earned: <strong>₹${totalInterestEarned.toFixed(2)}</strong>`;
+
+        // Show Results
+        document.getElementById('result').style.display = 'block';
+    }
+</script>
+
+</body>
+</html>

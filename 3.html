@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Develop a Habit of Saving</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 20px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            color: #007bff;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 20px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .btn {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background: #e9f7ef;
+            border: 1px solid #28a745;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Habit of Saving Calculator</h1>
+    <p>Calculate how much you will save over time or how long it will take to build your emergency fund.</p>
+
+    <form id="savingsForm">
+        <!-- Monthly Savings Input -->
+        <label for="monthlySavings">Monthly Savings (₹):</label>
+        <input type="number" id="monthlySavings" placeholder="Enter the amount you can save monthly" required>
+
+        <!-- Emergency Fund Goal Input -->
+        <label for="emergencyFundGoal">Emergency Fund Goal (₹):</label>
+        <input type="number" id="emergencyFundGoal" placeholder="Enter your emergency fund goal (optional)" required>
+
+        <!-- Interest Rate Input -->
+        <label for="interestRate">Annual Interest Rate (%):</label>
+        <input type="number" id="interestRate" placeholder="Enter interest rate (e.g., 5 for 5%)" required>
+
+        <!-- Number of Years to Save -->
+        <label for="years">Number of Years to Save:</label>
+        <input type="number" id="years" placeholder="Enter the number of years to save" required>
+
+        <!-- Calculate Button -->
+        <button type="button" class="btn" onclick="calculateSavings()">Calculate</button>
+    </form>
+
+    <!-- Results Display -->
+    <div class="result" id="result" style="display: none;">
+        <h2>Savings Analysis:</h2>
+        <p id="savingsOutput"></p>
+        <p id="goalOutput"></p>
+    </div>
+</div>
+
+<script>
+    function calculateSavings() {
+        // Input Values
+        const monthlySavings = parseFloat(document.getElementById('monthlySavings').value);
+        const emergencyFundGoal = parseFloat(document.getElementById('emergencyFundGoal').value);
+        const interestRate = parseFloat(document.getElementById('interestRate').value) / 100;
+        const years = parseFloat(document.getElementById('years').value);
+
+        // Validation
+        if (isNaN(monthlySavings) || isNaN(interestRate) || isNaN(years)) {
+            alert("Please enter valid numbers in all fields.");
+            return;
+        }
+
+        // Savings Calculation (Using Compound Interest Formula)
+        const monthlyRate = interestRate / 12; // Monthly interest rate
+        const months = years * 12; // Total months
+        const totalSavings = monthlySavings * ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate) * (1 + monthlyRate);
+
+        // Time to Reach Emergency Fund Goal
+        let monthsToGoal = 0;
+        if (emergencyFundGoal > 0) {
+            let currentSavings = 0;
+            while (currentSavings < emergencyFundGoal) {
+                currentSavings = currentSavings * (1 + monthlyRate) + monthlySavings;
+                monthsToGoal++;
+            }
+        }
+
+        // Results
+        document.getElementById('savingsOutput').innerHTML = `If you save ₹${monthlySavings.toFixed(
+            2
+        )} per month at an annual interest rate of ${(interestRate * 100).toFixed(
+            2
+        )}%, your total savings after ${years} years will be <strong>₹${totalSavings.toFixed(2)}</strong>.`;
+
+        if (emergencyFundGoal > 0) {
+            document.getElementById('goalOutput').innerHTML = `To reach your emergency fund goal of ₹${emergencyFundGoal.toFixed(
+                2
+            )}, it will take approximately <strong>${Math.ceil(
+                monthsToGoal / 12
+            )} years and ${monthsToGoal % 12} months</strong>.`;
+        } else {
+            document.getElementById('goalOutput').innerHTML = '';
+        }
+
+        // Show Results
+        document.getElementById('result').style.display = 'block';
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Banking Platform</title>
+    <link rel="stylesheet" href="Banking.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Digital Banking Platform</h1>
+            <p>Create a secure and reliable banking experience</p>
+        </header>
+
+        <!-- Account Details Section -->
+        <section id="account-section">
+            <h2>Account Details</h2>
+            <div id="account-info">
+                <p><strong>Account Holder:</strong>Amit Bhardwaj</p>
+                <p><strong>Account Number:</strong> 1234 5678 9012</p>
+                <p><strong>Balance:</strong> <span id="account-balance">$50,000.00</span></p>
+            </div>
+        </section>
+
+        <!-- Transactions Section -->
+        <section id="transaction-section">
+            <h2>Make a Transaction</h2>
+            <div class="transaction-form">
+                <input type="text" id="recipient" placeholder="Recipient Name">
+                <input type="number" id="amount" placeholder="Amount">
+                <button id="transfer-btn">Transfer</button>
+            </div>
+            <div id="transaction-status"></div>
+        </section>
+
+        <!-- Transaction History Section -->
+        <section id="history-section">
+            <h2>Transaction History</h2>
+            <div id="transaction-history">
+                <p>No transactions made yet.</p>
+            </div>
+        </section>
+    </div>
+
+    <script src="Bankings.js"></script>
+</body>
+</html>

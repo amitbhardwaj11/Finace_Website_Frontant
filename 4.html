@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debt Management Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 20px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            color: #dc3545;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 20px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .btn {
+            background-color: #dc3545;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background-color: #a71d2a;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background: #e9ecef;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Debt Management Calculator</h1>
+    <p>Calculate how long it will take to pay off your debt and how much total interest you will pay.</p>
+
+    <form id="debtForm">
+        <!-- Debt Amount -->
+        <label for="debtAmount">Total Debt Amount (₹):</label>
+        <input type="number" id="debtAmount" placeholder="Enter your total debt amount" required>
+
+        <!-- Interest Rate -->
+        <label for="interestRate">Annual Interest Rate (%):</label>
+        <input type="number" id="interestRate" placeholder="Enter annual interest rate (e.g., 10 for 10%)" required>
+
+        <!-- Monthly Payment -->
+        <label for="monthlyPayment">Monthly Payment (₹):</label>
+        <input type="number" id="monthlyPayment" placeholder="Enter your monthly payment" required>
+
+        <!-- Calculate Button -->
+        <button type="button" class="btn" onclick="calculateDebt()">Calculate</button>
+    </form>
+
+    <!-- Results Display -->
+    <div class="result" id="result" style="display: none;">
+        <h2>Debt Repayment Summary:</h2>
+        <p id="timeOutput"></p>
+        <p id="interestOutput"></p>
+    </div>
+</div>
+
+<script>
+    function calculateDebt() {
+        // Input Values
+        const debtAmount = parseFloat(document.getElementById('debtAmount').value);
+        const annualInterestRate = parseFloat(document.getElementById('interestRate').value) / 100;
+        const monthlyPayment = parseFloat(document.getElementById('monthlyPayment').value);
+
+        // Validation
+        if (isNaN(debtAmount) || isNaN(annualInterestRate) || isNaN(monthlyPayment) || monthlyPayment <= 0) {
+            alert("Please enter valid numbers in all fields.");
+            return;
+        }
+
+        // Calculations
+        let remainingDebt = debtAmount;
+        const monthlyRate = annualInterestRate / 12; // Monthly interest rate
+        let months = 0;
+        let totalInterest = 0;
+
+        // Iterate until debt is paid off
+        while (remainingDebt > 0) {
+            // Interest for the current month
+            const interest = remainingDebt * monthlyRate;
+            totalInterest += interest;
+
+            // Reduce the debt
+            remainingDebt += interest - monthlyPayment;
+
+            // If monthly payment is too low to cover interest
+            if (remainingDebt > debtAmount && months > 0) {
+                alert("Your monthly payment is too low to cover the interest. Increase your payment.");
+                return;
+            }
+
+            months++;
+        }
+
+        // Results
+        const years = Math.floor(months / 12);
+        const remainingMonths = months % 12;
+
+        document.getElementById('timeOutput').innerHTML = `It will take approximately <strong>${years} years and ${remainingMonths} months</strong> to pay off your debt.`;
+        document.getElementById('interestOutput').innerHTML = `The total interest paid over this period will be <strong>₹${totalInterest.toFixed(2)}</strong>.`;
+
+        // Show Results
+        document.getElementById('result').style.display = 'block';
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debit Card Services</title>
+    <link rel="stylesheet" href="Debit.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Debit Card Services</h1>
+            <p>Manage your transactions with secure debit card options.</p>
+        </header>
+
+        <!-- Display All Debit Card Transactions -->
+        <section id="transactions-section">
+            <h2>Transaction History</h2>
+            <div id="transactions-list">
+                <!-- Transactions will be injected here by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Add a New Debit Card Transaction -->
+        <section id="add-transaction-section">
+            <h2>Add a New Debit Card Transaction</h2>
+            <form id="add-transaction-form">
+                <input type="text" id="transaction-amount" placeholder="Transaction Amount" required>
+                <textarea id="transaction-description" placeholder="Transaction Description" required></textarea>
+                <input type="date" id="transaction-date" required>
+                <button type="submit">Add Transaction</button>
+            </form>
+        </section>
+
+        <!-- Delete a Debit Card Transaction -->
+        <section id="delete-transaction-section">
+            <h2>Delete a Transaction</h2>
+            <input type="number" id="transaction-id-to-delete" placeholder="Enter Transaction ID to Delete" required>
+            <button id="delete-transaction-btn">Delete Transaction</button>
+        </section>
+    </div>
+
+    <script src="Debit.js"></script>
+</body>
+</html>

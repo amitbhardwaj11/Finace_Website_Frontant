@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Card Services</title>
+    <link rel="stylesheet" href="Credit.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Credit Card Services</h1>
+            <p>Get the best credit card deals and rewards</p>
+        </header>
+
+        <!-- Display All Credit Card Deals -->
+        <section id="deals-section">
+            <h2>Available Credit Card Deals</h2>
+            <div id="deals-list">
+                <!-- Deals will be injected here by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Add a New Credit Card Deal -->
+        <section id="add-deal-section">
+            <h2>Add a New Credit Card Deal</h2>
+            <form id="add-deal-form">
+                <input type="text" id="deal-name" placeholder="Card Name" required>
+                <textarea id="deal-benefits" placeholder="Benefits (separate by commas)" required></textarea>
+                <input type="text" id="deal-eligibility" placeholder="Eligibility" required>
+                <input type="text" id="deal-interest" placeholder="Interest Rate" required>
+                <button type="submit">Add Deal</button>
+            </form>
+        </section>
+
+        <!-- Delete a Credit Card Deal -->
+        <section id="delete-deal-section">
+            <h2>Delete a Credit Card Deal</h2>
+            <input type="number" id="deal-id-to-delete" placeholder="Enter Deal ID to Delete" required>
+            <button id="delete-deal-btn">Delete Deal</button>
+        </section>
+    </div>
+
+    <script src="Credit.js"></script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker with Database</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            color: #198754;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #198754;
+            color: white;
+        }
+
+        .primary-button {
+            background-color: #198754;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .primary-button:hover {
+            background-color: #145c32;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Expense Tracker with Database</h1>
+
+    <!-- Expense Input Form -->
+    <section id="tools" class="finance-tools">
+        <h2>Add Expense</h2>
+        <form action="add_expense.php" method="POST" id="expense-form" class="finance-form">
+            <input type="number" name="expense_amount" placeholder="Amount" required>
+            <select name="expense_category" required>
+                <option value="">Select Category</option>
+                <option value="food">Food</option>
+                <option value="transport">Transport</option>
+                <option value="utilities">Utilities</option>
+                <option value="health">Health</option>
+                <option value="entertainment">Entertainment</option>
+            </select>
+            <input type="date" name="expense_date" required>
+            <button type="submit" class="primary-button">Add Expense</button>
+        </form>
+    </section>
+
+    <!-- Expense Display Table -->
+    <section id="expense-list">
+        <h2>Expense List</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Amount</th>
+                    <th>Category</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                // Fetch data from the database
+                $conn = new mysqli("localhost", "root", "", "finance_db");
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+                }
+
+                $sql = "SELECT * FROM expenses";
+                $result = $conn->query($sql);
+
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<tr>
+                                <td>{$row['id']}</td>
+                                <td>₹{$row['amount']}</td>
+                                <td>{$row['category']}</td>
+                                <td>{$row['expense_date']}</td>
+                            </tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='4'>No expenses found</td></tr>";
+                }
+                $conn->close();
+                ?>
+            </tbody>
+        </table>
+    </section>
+</div>
+
+</body>
+</html>

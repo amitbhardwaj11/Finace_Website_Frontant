@@ -1,0 +1,61 @@
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1e1e2f;
+    color: #f1f1f1;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+header {
+    margin-bottom: 30px;
+}
+
+h1 {
+    color: #4caf50;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 5px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#price-section, #trade-section, #history-section {
+    margin: 20px 0;
+}
+
+.trade-form input {
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#transaction-status {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #f1f1f1;
+}
+
+#transaction-history {
+    list-style-type: none;
+    padding: 0;
+    text-align: left;
+}

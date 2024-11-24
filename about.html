@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinTrack - Personal Finance Management</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="js/main.js"></script>
+    <script type="module" src="js/initDb.js"></script>
+    <script type="module" src="lock.json"></script>
+</head>
+<body>
+    <nav>
+        <div class="nav-content">
+            <div class="logo">FinTrack</div>
+            <button class="mobile-menu-btn">☰</button>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#tools">Financial Tools</a>
+                <a href="#crypto">Crypto</a>
+                <a href="#banking">Banking</a>
+                <a href="#contact">Contact</a>
+                <a href="bill">Bill</a>
+                <a href="login.html">  <button class="cta-button">Login</button></a>
+            </div>
+        </div>
+    </nav>
+
+    <header id="home">
+        <div class="hero">
+            <h1>Take Control of Your Finances</h1>
+            <p>Track expenses, manage investments, and achieve your financial goals</p>
+            <a href="Get-Start.html">  <button class="cta-button">Get Started</button></a>
+            
+        </div>
+    </header>
+
+    <section id="tools" class="finance-tools">
+        <h2>Personal Finance Tools</h2>
+        <div class="tools-container">
+            <div class="expense-tracker">
+                <h3>Expense Tracker</h3>
+                <form id="expense-form" class="finance-form">
+                    <input type="number" id="expense-amount" placeholder="Amount" required>
+                    <selectid="expense-category" required>
+                        <input type="category" id="expense-category" name="text" placeholder="Category" required>
+                        <option value="">Select Category</option>
+                        <option value="food">Food</option>
+                        <option value="transport">Transport</option>
+                        <option value="utilities">Utilities</option>
+                        <option value="health">Health</option>
+                        <option value="entertainment">Entertainment</option>
+                    </select>
+                    <inputtype="date" id="expense-date" required>
+                    <button type="submit" class="primary-button">Add Expense</button>
+                </form>
+                <div id="expenses-list" class="expenses-list"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="crypto" class="crypto-section">
+        <h2>Cryptocurrency Services</h2>
+        <div class="crypto-grid">
+            <div class="crypto-card">
+                <h3>Crypto Wallet</h3>
+                <p>Secure storage for your digital assets</p>
+                <a href="Crypto_wallet.html">  <button class="cta-button">Check Wallet</button></a>
+            </div>
+            <div class="crypto-card">
+                <h3>Trading Platform</h3>
+                <p>Trade cryptocurrencies with ease</p>
+                <a href="Trading.html">  <button class="cta-button">General Actions</button></a>
+            </div>
+            <div class="crypto-card">
+                <h3>DeFi Solutions</h3>
+                <p>Access decentralized finance tools</p>
+                <a href="Defi.html">  <button class="cta-button">Wallet Integration</button></a>
+            </div>
+        </div>
+    </section>
+
+    <section id="banking" class="digital-banking">
+        <h2>Digital Banking Services</h2> 
+        <div class="banking-container">
+           <div class="banking-card">
+                <h3>Net Banking</h3>
+                <p>Seamless digital banking solutions for your needs</p>
+                <a href="Banking.html">  <button class="cta-button">Check Details</button></a>
+          </div>
+          <div class="banking-card">
+              <h3>Credit Card </h3>
+              <p>Get the best credit card deals and rewards</p>
+              <a href="Credit.html">  <button class="cta-button">Check now</button></a>
+          </div>
+          <div class="banking-card">
+              <h3>Debit Card </h3>
+              <p>Manage your transactions with secure debit card options</p>
+              <a href="Debit.html">  <button class="cta-button">Check now</button></a>
+          </div>
+      </div>
+  </section>
+
+
+    <section id="contact" class="contact">
+        <h2>Contact Us</h2>
+        <div class="contact-container">
+         
+            <div class="contact-info">
+                <img src="./myimage.jpg" alt="">
+                <h3>Admin Details</h3>
+                <p><strong>Name:</strong> Amit Bhardwaj </p>
+                <p><strong>Contact:</strong> +916398153358  </p>
+                <p><strong>Email:</strong> amitbhardwajghz11@gmail.com</p>
+                <p><strong>Address:</strong> Ghaziabad, India</p>
+            </div>
+            <form class="contact-form">
+                <input type="text" name="name" placeholder="Name" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <textarea name="message" placeholder="Message" required></textarea>
+                <buttontype="submit" class="primary-button"> <a href="mailto:amitbhardwajghz11@gmail.com" style="text-decoration:none">Send Message </a></button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>FinTrack</h3>
+                <p>Your personal finance companion</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="#home">Home</a>
+                <a href="#tools">Financial Tools</a>
+                <a href="#crypto">Crypto</a>
+                <a href="#banking">Banking</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 FinTrack. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
